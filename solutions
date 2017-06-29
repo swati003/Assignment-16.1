@@ -1,0 +1,19 @@
+creating the table
+create table employee_data(eid int,name String ,sal int ,department String)
+             row format delimited fields terminated by '\t' lines terminated by '\n' stored as textfile 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+loading the data into folder 
+
+load data local inpath 'employees_detail.txt' into table employee_data;
+------------------------------------------------------------------------------------------------------------------------------------------
+
+a)
+
+sol: select * from employee_data where sal < 100 ;
+
+
+(b)
+sol
+SELECT * FROM employee_data s JOIN (SELECT s2.department dept, avg(s2.sal) sal from employee_data s2 group by department) s3 ON s.department =s3.department WHERE s.sal > s3.sal;
+
